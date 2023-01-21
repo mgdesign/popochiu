@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://popochiu/Rooms/Entrance/RoomEntrance.gd" type="Script" id=1]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/PopochiuProp.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/WalkableArea/PopochiuWalkableArea.tscn" type="PackedScene" id=3]
+[ext_resource path="res://popochiu/Rooms/Entrance/Props/_NoInteraction/background.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/Characters/Brunilde/CharacterBrunilde.tscn" type="PackedScene" id=5]
+[ext_resource path="res://popochiu/Rooms/Entrance/WalkableAreas/Floor/WalkableAreaFloor.gd" type="Script" id=6]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Hotspot/PopochiuHotspot.tscn" type="PackedScene" id=7]
+[ext_resource path="res://popochiu/Rooms/Entrance/Hotspots/PictureCastle/HotspotPictureCastle.gd" type="Script" id=8]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 277, 4, 299, 16, 299, 28, -53, 28, 127, 13, -54, 21, 0, -10, 78, -10, 119, 13, 149, 5 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 3, 5, 6, 7, 8 ), PoolIntArray( 4, 9, 0 ), PoolIntArray( 3, 8, 4 ) ]
+outlines = [ PoolVector2Array( 0, -10, 78, -10, 119, 13, 127, 13, 149, 5, 277, 4, 299, 16, 299, 28, -53, 28, -54, 21 ) ]
+
+[node name="RoomEntrance" type="YSort"]
+sort_enabled = false
+script = ExtResource( 1 )
+script_name = "Entrance"
+limit_left = -30.0
+limit_right = 350.0
+
+[node name="Props" type="YSort" parent="."]
+sort_enabled = false
+
+[node name="Backgorund" parent="Props" instance=ExtResource( 2 )]
+position = Vector2( 155, 90 )
+script_name = "Backgorund"
+description = "Backgorund"
+clickable = false
+cursor = 1
+texture = ExtResource( 4 )
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Floor" parent="WalkableAreas" instance=ExtResource( 3 )]
+position = Vector2( 160, 90 )
+script = ExtResource( 6 )
+script_name = "Floor"
+description = "Floor"
+
+[node name="Perimeter" type="NavigationPolygonInstance" parent="WalkableAreas/Floor"]
+modulate = Color( 0, 1, 0, 1 )
+position = Vector2( -115, 42 )
+navpoly = SubResource( 1 )
+
+[node name="Hotspots" type="Node2D" parent="."]
+position = Vector2( -149, -11 )
+
+[node name="PictureCastle" parent="Hotspots" instance=ExtResource( 7 )]
+position = Vector2( 160, 90 )
+script = ExtResource( 8 )
+script_name = "PictureCastle"
+description = "PictureCastle"
+walk_to_point = Vector2( 27, 52 )
+cursor = 1
+
+[node name="InteractionPolygon" type="CollisionPolygon2D" parent="Hotspots/PictureCastle"]
+modulate = Color( 0, 0, 1, 1 )
+polygon = PoolVector2Array( -11, -28, 7, -19, 7, 18, -11, 20 )
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="Characters" type="YSort" parent="."]
+sort_enabled = false
+
+[node name="CharacterBrunilde *" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 51, 148 )

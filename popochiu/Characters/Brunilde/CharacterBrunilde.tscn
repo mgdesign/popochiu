@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://popochiu/Characters/Brunilde/CharacterBrunilde.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/Characters/Brunilde/brunilde.png" type="Texture" id=2]
+[ext_resource path="res://popochiu/Characters/Brunilde/CharacterBrunildeAnimations.tres" type="SpriteFrames" id=3]
+
+[node name="CharacterBrunilde" type="Area2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+script_name = "Brunilde"
+description = "Brunilde"
+clickable = false
+cursor = 8
+flips_when = 1
+walk_speed = 100.0
+
+[node name="InteractionPolygon" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
+
+[node name="BaselineHelper" type="Line2D" parent="."]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" type="Position2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="WalkToHelper"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 1, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -25 )
+texture = ExtResource( 2 )
+
+[node name="DialogPos" type="Position2D" parent="."]
+visible = false
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -25 )
+frames = ExtResource( 3 )
+animation = "talk_h"
+__meta__ = {
+"_aseprite_wizard_config_": {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"op_exp": true,
+"source": "res://popochiu/Characters/Brunilde/brunilde.aseprite"
+}
+}

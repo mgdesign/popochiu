@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://popochiu/Characters/Brunilde/CharacterBrunildeState.gd" type="Script" id=1]
+
+[resource]
+resource_name = "Brunilde"
+script = ExtResource( 1 )
+script_name = "Brunilde"
+scene = "res://popochiu/Characters/Brunilde/CharacterBrunilde.tscn"
